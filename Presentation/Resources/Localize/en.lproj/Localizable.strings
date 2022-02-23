@@ -1,0 +1,11 @@
+/* 
+  Localizable.strings
+  Presentation
+
+  Created by okudera on 2022/02/24.
+  
+*/
+
+// MARK: - RepoListView.swift
+
+"repo_list_view.navigation_bar_title" = "Repositories";
