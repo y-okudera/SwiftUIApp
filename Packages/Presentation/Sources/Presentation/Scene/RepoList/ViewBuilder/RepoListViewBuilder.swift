@@ -10,6 +10,6 @@ import UseCase
 
 public enum RepoListViewBuilder {
     public static func build(environment: AppEnvironment) -> RepoListView {
-        RepoListView(presenter: .init(searchRepoUseCase: SearchRepoUseCaseProvider.provide(environment: environment)))
+        RepoListView(viewModel: .init(searchRepoUseCase: SearchRepoUseCaseProvider.provide(environment: environment)))
     }
 }

@@ -11,23 +11,19 @@ import UseCase
 public struct RepoListView: View {
 
     @ObservedObject
-    private var presenter: RepoListPresenter
+    private var viewModel: RepoListViewModel
 
-    public init(presenter: RepoListPresenter) {
-        self.presenter = presenter
+    public init(viewModel: RepoListViewModel) {
+        self.viewModel = viewModel
     }
 
     public var body: some View {
         SearchNavigation(
-            text: $presenter.inputText,
-            search: {
-                Task {
-                    await presenter.searchRepositories(inputText: presenter.inputText)
-                }
-            }
+            text: $viewModel.inputText,
+            search: { Task { await viewModel.searchRepositories() } }
         ) {
             List {
-                ForEach(presenter.repositories) { repository in
+                ForEach(viewModel.repositories) { repository in
                     RepoListRow(title: repository.fullName, language: repository.language ?? "") {
                         print(repository.fullName, repository.language ?? "")
                     }
@@ -36,15 +32,15 @@ public struct RepoListView: View {
                     Spacer()
                     ProgressView()
                         .onAppear {
-                            presenter.additionalSearchRepositories(searchQuery: presenter.searchQuery, page: presenter.page)
+                            viewModel.additionalSearchRepositories()
                         }
                     Spacer()
                 }
                 // 次のページがない場合、リスト末尾にインジケーターを表示しない
-                .hidden(!presenter.hasNext)
+                .hidden(!viewModel.hasNext)
             }
-            .alert(isPresented: $presenter.isErrorShown) { () -> Alert in
-                Alert(title: Text(presenter.errorTitle), message: Text(presenter.errorMessage))
+            .alert(isPresented: $viewModel.isErrorShown) { () -> Alert in
+                Alert(title: Text(viewModel.errorTitle), message: Text(viewModel.errorMessage))
             }
             .navigationBarTitle(Text("repo_list_view.navigation_bar_title", bundle: .module))
         }
