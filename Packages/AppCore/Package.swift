@@ -4,30 +4,28 @@
 import PackageDescription
 
 let package = Package(
-    name: "Infrastructure",
+    name: "AppCore",
     platforms: [
         .macOS(.v10_15),
         .iOS(.v14),
     ],
     products: [
         .library(
-            name: "Infrastructure",
-            targets: ["Infrastructure"]
+            name: "AppCore",
+            targets: ["AppCore"]
         ),
     ],
     dependencies: [
-        .package(name: "AppCore", path: "../AppCore"),
+
     ],
     targets: [
         .target(
-            name: "Infrastructure",
-            dependencies: [
-                .product(name: "AppCore", package: "AppCore"),
-            ]
+            name: "AppCore",
+            dependencies: []
         ),
         .testTarget(
-            name: "InfrastructureTests",
-            dependencies: ["Infrastructure"]
+            name: "AppCoreTests",
+            dependencies: ["AppCore"]
         ),
     ]
 )

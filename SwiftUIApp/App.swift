@@ -12,7 +12,7 @@ import SwiftUI
 struct App: SwiftUI.App {
     var body: some Scene {
         WindowGroup {
-            RepoListView()
+            RepoListViewBuilder.build(environment: env)
         }
     }
 }

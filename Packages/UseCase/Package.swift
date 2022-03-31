@@ -4,33 +4,29 @@
 import PackageDescription
 
 let package = Package(
-    name: "Presentation",
-    defaultLocalization: "ja",
+    name: "UseCase",
     platforms: [
         .macOS(.v10_15),
         .iOS(.v14),
     ],
     products: [
         .library(
-            name: "Presentation",
-            targets: ["Presentation"]
-        ),
+            name: "UseCase",
+            targets: ["UseCase"]),
     ],
     dependencies: [
         .package(name: "AppCore", path: "../AppCore"),
-        .package(name: "UseCase", path: "../UseCase"),
     ],
     targets: [
         .target(
-            name: "Presentation",
+            name: "UseCase",
             dependencies: [
                 .product(name: "AppCore", package: "AppCore"),
-                .product(name: "UseCase", package: "UseCase"),
             ]
         ),
         .testTarget(
-            name: "PresentationTests",
-            dependencies: ["Presentation"]
+            name: "UseCaseTests",
+            dependencies: ["UseCase"]
         ),
     ]
 )

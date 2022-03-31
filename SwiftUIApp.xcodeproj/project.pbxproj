@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B640856527F53405008219C2 /* Infrastructure in Frameworks */ = {isa = PBXBuildFile; productRef = B640856427F53405008219C2 /* Infrastructure */; };
+		B640856927F53DFD008219C2 /* AppCore in Frameworks */ = {isa = PBXBuildFile; productRef = B640856827F53DFD008219C2 /* AppCore */; };
+		B640856B27F53DFD008219C2 /* UseCase in Frameworks */ = {isa = PBXBuildFile; productRef = B640856A27F53DFD008219C2 /* UseCase */; };
+		B640856E27F53E3B008219C2 /* SwiftUIAppEnvironment.swift in Sources */ = {isa = PBXBuildFile; fileRef = B640856D27F53E3B008219C2 /* SwiftUIAppEnvironment.swift */; };
+		B640857127F53EF6008219C2 /* URLSession+.swift in Sources */ = {isa = PBXBuildFile; fileRef = B640857027F53EF6008219C2 /* URLSession+.swift */; };
 		FC1C38DB27C66C4B00A24204 /* App.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC1C38DA27C66C4B00A24204 /* App.swift */; };
 		FC1C38DF27C66C4D00A24204 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FC1C38DE27C66C4D00A24204 /* Assets.xcassets */; };
 		FC1C38E227C66C4D00A24204 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FC1C38E127C66C4D00A24204 /* Preview Assets.xcassets */; };
@@ -14,14 +19,15 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		B609238627F4CB3C00B366A7 /* AppCore */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = AppCore; path = Packages/AppCore; sourceTree = "<group>"; };
+		B640856127F4D736008219C2 /* UseCase */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = UseCase; path = Packages/UseCase; sourceTree = "<group>"; };
+		B640856D27F53E3B008219C2 /* SwiftUIAppEnvironment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftUIAppEnvironment.swift; sourceTree = "<group>"; };
+		B640857027F53EF6008219C2 /* URLSession+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URLSession+.swift"; sourceTree = "<group>"; };
 		FC1C38D727C66C4B00A24204 /* SwiftUIApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SwiftUIApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FC1C38DA27C66C4B00A24204 /* App.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = App.swift; sourceTree = "<group>"; };
 		FC1C38DE27C66C4D00A24204 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		FC1C38E127C66C4D00A24204 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
-		FC1C3A4927C6937E00A24204 /* Injected */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = Injected; path = Packages/Injected; sourceTree = "<group>"; };
 		FCFD825B27C6A05400A24C10 /* Infrastructure */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = Infrastructure; path = Packages/Infrastructure; sourceTree = "<group>"; };
-		FCFD825E27C6A0EC00A24C10 /* Domain */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = Domain; path = Packages/Domain; sourceTree = "<group>"; };
-		FCFD826527C6A38100A24C10 /* Application */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = Application; path = Packages/Application; sourceTree = "<group>"; };
 		FCFD826827C6A55800A24C10 /* Presentation */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = Presentation; path = Packages/Presentation; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -30,13 +36,32 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B640856B27F53DFD008219C2 /* UseCase in Frameworks */,
+				B640856927F53DFD008219C2 /* AppCore in Frameworks */,
 				FCFD827127C6A98C00A24C10 /* Presentation in Frameworks */,
+				B640856527F53405008219C2 /* Infrastructure in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		B640856C27F53E28008219C2 /* Environment */ = {
+			isa = PBXGroup;
+			children = (
+				B640856D27F53E3B008219C2 /* SwiftUIAppEnvironment.swift */,
+			);
+			path = Environment;
+			sourceTree = "<group>";
+		};
+		B640856F27F53EE3008219C2 /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				B640857027F53EF6008219C2 /* URLSession+.swift */,
+			);
+			path = Extension;
+			sourceTree = "<group>";
+		};
 		FC1C38CE27C66C4B00A24204 = {
 			isa = PBXGroup;
 			children = (
@@ -58,6 +83,8 @@
 		FC1C38D927C66C4B00A24204 /* SwiftUIApp */ = {
 			isa = PBXGroup;
 			children = (
+				B640856F27F53EE3008219C2 /* Extension */,
+				B640856C27F53E28008219C2 /* Environment */,
 				FC1C38DA27C66C4B00A24204 /* App.swift */,
 				FC1C38DE27C66C4D00A24204 /* Assets.xcassets */,
 				FC1C38E027C66C4D00A24204 /* Preview Content */,
@@ -83,10 +110,9 @@
 		FC1C3A4827C6937E00A24204 /* Packages */ = {
 			isa = PBXGroup;
 			children = (
-				FC1C3A4927C6937E00A24204 /* Injected */,
+				B609238627F4CB3C00B366A7 /* AppCore */,
 				FCFD825B27C6A05400A24C10 /* Infrastructure */,
-				FCFD825E27C6A0EC00A24C10 /* Domain */,
-				FCFD826527C6A38100A24C10 /* Application */,
+				B640856127F4D736008219C2 /* UseCase */,
 				FCFD826827C6A55800A24C10 /* Presentation */,
 			);
 			name = Packages;
@@ -110,6 +136,9 @@
 			name = SwiftUIApp;
 			packageProductDependencies = (
 				FCFD827027C6A98C00A24C10 /* Presentation */,
+				B640856427F53405008219C2 /* Infrastructure */,
+				B640856827F53DFD008219C2 /* AppCore */,
+				B640856A27F53DFD008219C2 /* UseCase */,
 			);
 			productName = SwiftUIApp;
 			productReference = FC1C38D727C66C4B00A24204 /* SwiftUIApp.app */;
@@ -169,6 +198,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				FC1C38DB27C66C4B00A24204 /* App.swift in Sources */,
+				B640856E27F53E3B008219C2 /* SwiftUIAppEnvironment.swift in Sources */,
+				B640857127F53EF6008219C2 /* URLSession+.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -373,6 +404,18 @@
 /* End XCConfigurationList section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		B640856427F53405008219C2 /* Infrastructure */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = Infrastructure;
+		};
+		B640856827F53DFD008219C2 /* AppCore */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = AppCore;
+		};
+		B640856A27F53DFD008219C2 /* UseCase */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = UseCase;
+		};
 		FCFD827027C6A98C00A24C10 /* Presentation */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = Presentation;
