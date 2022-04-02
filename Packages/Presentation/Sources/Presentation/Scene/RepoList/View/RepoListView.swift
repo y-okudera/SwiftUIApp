@@ -7,40 +7,56 @@
 
 import SwiftUI
 import UseCase
+import AppCore
+
+public protocol RepoListViewInput: AnyObject {
+    func repoListViewSearchRepositories(searchQuery: String)
+    func repoListViewLoadMoreRepositories()
+    func repoListViewDidTapRepository(_ repository: GitHubRepository)
+}
 
 public struct RepoListView: View {
 
+    weak var input: RepoListViewInput?
+    
     @ObservedObject
-    private var viewModel: RepoListViewModel
+    private var dataSource: DataSource
 
-    public init(viewModel: RepoListViewModel) {
-        self.viewModel = viewModel
+    public init(input: RepoListViewInput?, dataSource: DataSource) {
+        self.input = input
+        self.dataSource = dataSource
     }
 
     public var body: some View {
         SearchNavigation(
-            text: $viewModel.inputText,
-            search: { Task { await viewModel.searchRepositories() } }
+            text: $dataSource.inputText,
+            search: { input?.repoListViewSearchRepositories(searchQuery: dataSource.inputText) }
         ) {
             List {
-                ForEach(viewModel.repositories) { repository in
+                ForEach(dataSource.repositories) { repository in
                     RepoListRow(title: repository.fullName, language: repository.language ?? "") {
                         print(repository.fullName, repository.language ?? "")
+                        input?.repoListViewDidTapRepository(repository)
                     }
                 }
                 HStack {
                     Spacer()
                     ProgressView()
                         .onAppear {
-                            viewModel.additionalSearchRepositories()
+                            input?.repoListViewLoadMoreRepositories()
                         }
                     Spacer()
                 }
                 // 次のページがない場合、リスト末尾にインジケーターを表示しない
-                .hidden(!viewModel.hasNext)
+                .hidden(!dataSource.hasNext)
             }
-            .alert(isPresented: $viewModel.isErrorShown) { () -> Alert in
-                Alert(title: Text(viewModel.errorTitle), message: Text(viewModel.errorMessage))
+            .alert(isPresented: $dataSource.isErrorShown) { () -> Alert in
+                Alert(
+                    title: Text(dataSource.errorTitle),
+                    message: Text(dataSource.errorMessage),
+                    primaryButton: .default(Text("retry", bundle: .module), action: dataSource.retryHandler),
+                    secondaryButton: .cancel(Text("cancel", bundle: .module))
+                )
             }
             .navigationBarTitle(Text("repo_list_view.navigation_bar_title", bundle: .module))
         }
@@ -48,12 +64,51 @@ public struct RepoListView: View {
     }
 }
 
-//#if DEBUG
-//struct RepoListView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        AppPreview {
-//            RepoListView(presenter: .mock)
-//        }
-//    }
-//}
-//#endif
+// MARK: - DataSource
+extension RepoListView {
+    public class DataSource: ObservableObject {
+        @Published var inputText = ""
+        @Published var isErrorShown = false
+        @Published var repositories = [GitHubRepository]()
+        @Published var hasNext = false
+
+        var errorTitle = ""
+        var errorMessage = ""
+        var retryHandler: (() -> Void)? = nil
+    }
+}
+
+extension RepoListView.DataSource {
+    static let mock: RepoListView.DataSource = {
+        let mock = RepoListView.DataSource()
+        mock.inputText = "Swift"
+        mock.repositories = [
+            .init(
+                id: 1,
+                fullName: "y-okudera/SwiftUIApp",
+                description: "Swift Package based App.",
+                stargazersCount: 1234,
+                language: "Swift",
+                htmlUrl: URL(string: "https://github.com/y-okudera/SwiftUIApp")!,
+                owner: GitHubUser(
+                    id: 100,
+                    login: "mock",
+                    avatarUrl: URL(string: "https://avatars.githubusercontent.com/u/25205138?v=4")!,
+                    htmlUrl: URL(string: "https://github.com/y-okudera")!,
+                    type: "User"
+                )
+            )
+        ]
+        return mock
+    }()
+}
+
+#if DEBUG
+struct RepoListView_Previews: PreviewProvider {
+    static var previews: some View {
+        AppPreview {
+            RepoListView(input: nil, dataSource: .mock)
+        }
+    }
+}
+#endif

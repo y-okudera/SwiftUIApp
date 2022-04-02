@@ -6,6 +6,11 @@
   
 */
 
+// MARK: - Alert
+
+"cancel" = "キャンセル";
+"retry" = "リトライ";
+
 // MARK: - RepoListView.swift
 
 "repo_list_view.navigation_bar_title" = "リポジトリ";

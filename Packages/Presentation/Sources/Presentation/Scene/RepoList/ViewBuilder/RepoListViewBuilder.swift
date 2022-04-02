@@ -7,9 +7,20 @@
 
 import AppCore
 import UseCase
+import UIKit
 
 public enum RepoListViewBuilder {
-    public static func build(environment: AppEnvironment) -> RepoListView {
-        RepoListView(viewModel: .init(searchRepoUseCase: SearchRepoUseCaseProvider.provide(environment: environment)))
+    public static func build(environment: AppEnvironment) -> UIViewController {
+        let dataSource = RepoListView.DataSource()
+
+        let presenter: RepoListPresenter = RepoListPresenterImpl(
+            searchRepoUseCase: SearchRepoUseCaseProvider.provide(environment: environment)
+        )
+
+        let viewController: RepoListViewControllerProtocol = RepoListViewController()
+        viewController.configure(dataSource: dataSource, presenter: presenter)
+
+        presenter.configure(output: viewController)
+        return viewController
     }
 }
