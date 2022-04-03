@@ -7,7 +7,6 @@
 
 import AppCore
 import UIKit
-import SwiftUI
 
 protocol RepoListViewControllerProtocol: UIViewController, RepoListPresenterOutput {
     func configure(dataSource: RepoListView.DataSource, presenter: RepoListPresenterInput)
@@ -26,6 +25,7 @@ final class RepoListViewController: UIViewController {
     }
 }
 
+// MARK: - RepoListViewControllerProtocol
 extension RepoListViewController: RepoListViewControllerProtocol {
 
     func configure(dataSource: RepoListView.DataSource, presenter: RepoListPresenterInput) {
@@ -34,6 +34,7 @@ extension RepoListViewController: RepoListViewControllerProtocol {
     }
 }
 
+// MARK: - RepoListPresenterOutput
 extension RepoListViewController: RepoListPresenterOutput {
 
     func searchResults(items: [GitHubRepository], hasNext: Bool) {
@@ -54,6 +55,7 @@ extension RepoListViewController: RepoListPresenterOutput {
     }
 }
 
+// MARK: - RepoListViewInput
 extension RepoListViewController: RepoListViewInput {
 
     func repoListViewSearchRepositories(searchQuery: String) {

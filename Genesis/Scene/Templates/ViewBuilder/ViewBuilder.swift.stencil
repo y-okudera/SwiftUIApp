@@ -1,0 +1,27 @@
+//
+//  {{ sceneName }}ViewBuilder.swift
+//  Presentation
+//
+//  Created by {{ developerName }} on {{ date }}.
+//  Copyright © {{ year }} {{ developerCompany }}. All rights reserved.
+//
+
+import AppCore
+import UIKit
+import UseCase
+
+enum {{ sceneName }}ViewBuilder {
+    static func build(environment: AppEnvironment) -> UIViewController {
+        let dataSource = {{ sceneName }}View.DataSource()
+
+        let presenter: {{ sceneName }}Presenter & {{ sceneName }}PresenterInput = {{ sceneName }}PresenterImpl(
+            searchRepoUseCase: SearchRepoUseCaseProvider.provide(environment: environment)
+        )
+
+        let viewController: {{ sceneName }}ViewControllerProtocol = {{ sceneName }}ViewController()
+        viewController.configure(dataSource: dataSource, presenter: presenter)
+
+        presenter.configure(output: viewController)
+        return viewController
+    }
+}

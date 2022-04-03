@@ -11,6 +11,7 @@ import UseCase
 
 protocol RepoListPresenter: AnyObject {
     var searchRepoUseCase: SearchRepoUseCase { get }
+    var wireframe: RepoListWireframe { get }
     func configure(output: RepoListPresenterOutput?)
 }
 
@@ -36,9 +37,11 @@ public final class RepoListPresenterImpl: RepoListPresenter {
     private var page = 0
 
     let searchRepoUseCase: SearchRepoUseCase
+    let wireframe: RepoListWireframe
 
-    public init(searchRepoUseCase: SearchRepoUseCase) {
+    public init(searchRepoUseCase: SearchRepoUseCase, wireframe: RepoListWireframe) {
         self.searchRepoUseCase = searchRepoUseCase
+        self.wireframe = wireframe
     }
 
     func configure(output: RepoListPresenterOutput?) {
@@ -55,7 +58,8 @@ extension RepoListPresenterImpl: RepoListPresenterInput {
                 self.searchQuery = searchQuery
                 page = 1
 
-                let searchResponse = try await searchRepoUseCase.execute(searchQuery: searchQuery, page: 1)
+                let searchResponse = try await searchRepoUseCase.execute(
+                    searchQuery: searchQuery, page: 1)
                 output?.searchResults(
                     items: searchResponse.response.items,
                     hasNext: searchResponse.gitHubAPIPagination?.hasNext ?? false
@@ -90,7 +94,8 @@ extension RepoListPresenterImpl: RepoListPresenterInput {
         Task {
             do {
                 page += 1
-                let searchResponse = try await searchRepoUseCase.execute(searchQuery: searchQuery, page: page)
+                let searchResponse = try await searchRepoUseCase.execute(
+                    searchQuery: searchQuery, page: page)
                 output?.loadMoreResults(
                     items: searchResponse.response.items,
                     hasNext: searchResponse.gitHubAPIPagination?.hasNext ?? false
@@ -115,5 +120,6 @@ extension RepoListPresenterImpl: RepoListPresenterInput {
     func didTapRepository(_ repository: GitHubRepository) {
         // TODO: - Will impl
         print(#function, "repository", repository)
+        wireframe.presentRepoList()
     }
 }

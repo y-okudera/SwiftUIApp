@@ -5,9 +5,8 @@
 //  Created by okudera on 2022/02/23.
 //
 
-import SwiftUI
-import UseCase
 import AppCore
+import SwiftUI
 
 public protocol RepoListViewInput: AnyObject {
     func repoListViewSearchRepositories(searchQuery: String)
@@ -18,7 +17,7 @@ public protocol RepoListViewInput: AnyObject {
 public struct RepoListView: View {
 
     weak var input: RepoListViewInput?
-    
+
     @ObservedObject
     private var dataSource: DataSource
 
@@ -54,7 +53,8 @@ public struct RepoListView: View {
                 Alert(
                     title: Text(dataSource.errorTitle),
                     message: Text(dataSource.errorMessage),
-                    primaryButton: .default(Text("retry", bundle: .module), action: dataSource.retryHandler),
+                    primaryButton: .default(
+                        Text("retry", bundle: .module), action: dataSource.retryHandler),
                     secondaryButton: .cancel(Text("cancel", bundle: .module))
                 )
             }
@@ -104,11 +104,11 @@ extension RepoListView.DataSource {
 }
 
 #if DEBUG
-struct RepoListView_Previews: PreviewProvider {
-    static var previews: some View {
-        AppPreview {
-            RepoListView(input: nil, dataSource: .mock)
+    struct RepoListView_Previews: PreviewProvider {
+        static var previews: some View {
+            AppPreview {
+                RepoListView(input: nil, dataSource: .mock)
+            }
         }
     }
-}
 #endif

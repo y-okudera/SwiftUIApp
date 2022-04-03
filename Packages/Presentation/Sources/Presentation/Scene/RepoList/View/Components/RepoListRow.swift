@@ -33,12 +33,12 @@ struct RepoListRow: View {
 }
 
 #if DEBUG
-struct RepoListRow_Previews: PreviewProvider {
-    static var previews: some View {
-        AppPreview {
-            RepoListRow(title: "octocat/Spoon-Knife", language: "HTML", action: {})
-                .previewLayout(.sizeThatFits)
+    struct RepoListRow_Previews: PreviewProvider {
+        static var previews: some View {
+            AppPreview {
+                RepoListRow(title: "octocat/Spoon-Knife", language: "HTML", action: {})
+                    .previewLayout(.sizeThatFits)
+            }
         }
     }
-}
 #endif

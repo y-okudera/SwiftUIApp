@@ -6,21 +6,24 @@
 //
 
 import AppCore
-import UseCase
 import UIKit
+import UseCase
 
 public enum RepoListViewBuilder {
     public static func build(environment: AppEnvironment) -> UIViewController {
-        let dataSource = RepoListView.DataSource()
-
+        let wireFrame = RepoListWireframeImpl(environment: environment)
         let presenter: RepoListPresenter & RepoListPresenterInput = RepoListPresenterImpl(
-            searchRepoUseCase: SearchRepoUseCaseProvider.provide(environment: environment)
+            searchRepoUseCase: SearchRepoUseCaseProvider.provide(environment: environment),
+            wireframe: wireFrame
         )
 
         let viewController: RepoListViewControllerProtocol = RepoListViewController()
+        let dataSource = RepoListView.DataSource()
         viewController.configure(dataSource: dataSource, presenter: presenter)
 
         presenter.configure(output: viewController)
+        wireFrame.configure(viewController: viewController)
+
         return viewController
     }
 }

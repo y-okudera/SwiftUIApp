@@ -1,0 +1,11 @@
+files:
+  - template: Templates/Presenter/Presenter.swift.stencil
+    path: "Presenter/{{ sceneName }}Presenter.swift"
+  - template: Templates/View/View.swift.stencil
+    path: "View/{{ sceneName }}View.swift"
+  - template: Templates/ViewController/ViewController.swift.stencil
+    path: "ViewController/{{ sceneName }}ViewController.swift"
+  - template: Templates/ViewBuilder/ViewBuilder.swift.stencil
+    path: "ViewBuilder/{{ sceneName }}ViewBuilder.swift"
+  - template: Templates/Wireframe/Wireframe.swift.stencil
+    path: "Wireframe/{{ sceneName }}Wireframe.swift"

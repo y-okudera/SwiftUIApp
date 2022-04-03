@@ -1,0 +1,77 @@
+//
+//  {{ sceneName }}ViewController.swift
+//  Presentation
+//
+//  Created by {{ developerName }} on {{ date }}.
+//  Copyright © {{ year }} {{ developerCompany }}. All rights reserved.
+//
+
+import AppCore
+import UIKit
+
+protocol {{ sceneName }}ViewControllerProtocol: UIViewController, {{ sceneName }}PresenterOutput {
+    func configure(dataSource: {{ sceneName }}View.DataSource, presenter: {{ sceneName }}PresenterInput)
+}
+
+final class {{ sceneName }}ViewController: UIViewController {
+
+    private var dataSource: {{ sceneName }}View.DataSource!
+    private var presenter: {{ sceneName }}PresenterInput!
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
+
+        let swiftUIView = {{ sceneName }}View(input: self, dataSource: dataSource)
+        addUIHostingController(swiftUIView: swiftUIView)
+    }
+}
+
+// MARK: - {{ sceneName }}ViewControllerProtocol
+extension {{ sceneName }}ViewController: {{ sceneName }}ViewControllerProtocol {
+
+    func configure(dataSource: {{ sceneName }}View.DataSource, presenter: {{ sceneName }}PresenterInput) {
+        self.dataSource = dataSource
+        self.presenter = presenter
+    }
+}
+
+// MARK: - {{ sceneName }}PresenterOutput
+extension {{ sceneName }}ViewController: {{ sceneName }}PresenterOutput {
+
+    // func searchResults(items: [GitHubRepository], hasNext: Bool) {
+    //     dataSource.repositories = items
+    //     dataSource.hasNext = hasNext
+    // }
+
+    // func loadMoreResults(items: [GitHubRepository], hasNext: Bool) {
+    //     dataSource.repositories.append(contentsOf: items)
+    //     dataSource.hasNext = hasNext
+    // }
+
+    // func errorOccurred(errorTitle: String, errorMessage: String, retryHandler: (() -> Void)?) {
+    //     dataSource.errorTitle = errorTitle
+    //     dataSource.errorMessage = errorMessage
+    //     dataSource.retryHandler = retryHandler
+    //     dataSource.isErrorShown = true
+    // }
+}
+
+// MARK: - {{ sceneName }}ViewInput
+extension {{ sceneName }}ViewController: {{ sceneName }}ViewInput {
+
+    // func repoListViewSearchRepositories(searchQuery: String) {
+    //     Task {
+    //         await presenter.searchRepositories(searchQuery: searchQuery)
+    //     }
+    // }
+
+    // func repoListViewLoadMoreRepositories() {
+    //     Task {
+    //         await presenter.loadMoreRepositories()
+    //     }
+    // }
+
+    // func repoListViewDidTapRepository(_ repository: GitHubRepository) {
+    //     presenter.didTapRepository(repository)
+    // }
+}

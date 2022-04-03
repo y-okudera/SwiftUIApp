@@ -1,0 +1,35 @@
+//
+//  {{ sceneName }}Wireframe.swift
+//  Presentation
+//
+//  Created by {{ developerName }} on {{ date }}.
+//  Copyright © {{ year }} {{ developerCompany }}. All rights reserved.
+//
+
+import AppCore
+import UIKit
+
+protocol {{ sceneName }}Wireframe: AnyObject {
+    var environment: AppEnvironment { get }
+    func configure(viewController: UIViewController?)
+    // func presentRepoList()
+}
+
+final class {{ sceneName }}WireframeImpl: {{ sceneName }}Wireframe {
+
+    private weak var viewController: UIViewController?
+    let environment: AppEnvironment
+
+    init(environment: AppEnvironment) {
+        self.environment = environment
+    }
+
+    func configure(viewController: UIViewController?) {
+        self.viewController = viewController
+    }
+
+    // func presentRepoList() {
+    //     let vc = RepoListViewBuilder.build(environment: environment)
+    //     viewController?.present(vc, animated: true)
+    // }
+}
