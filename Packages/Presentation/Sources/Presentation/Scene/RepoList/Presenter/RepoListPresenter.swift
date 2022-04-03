@@ -30,7 +30,7 @@ protocol RepoListPresenterOutput: AnyObject {
 }
 
 // MARK: - Impl
-public final class RepoListPresenterImpl: RepoListPresenter {
+final class RepoListPresenterImpl: RepoListPresenter {
 
     weak var output: RepoListPresenterOutput?
     private var searchQuery = ""
@@ -39,7 +39,7 @@ public final class RepoListPresenterImpl: RepoListPresenter {
     let searchRepoUseCase: SearchRepoUseCase
     let wireframe: RepoListWireframe
 
-    public init(searchRepoUseCase: SearchRepoUseCase, wireframe: RepoListWireframe) {
+    init(searchRepoUseCase: SearchRepoUseCase, wireframe: RepoListWireframe) {
         self.searchRepoUseCase = searchRepoUseCase
         self.wireframe = wireframe
     }

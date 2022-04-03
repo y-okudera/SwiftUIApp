@@ -27,7 +27,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         self.window = window
         window.makeKeyAndVisible()
 
-        let vc = RepoListViewBuilder.build(environment: env)
+        let vc = SplashViewBuilder.build(environment: env)
         window.rootViewController = vc
     }
 

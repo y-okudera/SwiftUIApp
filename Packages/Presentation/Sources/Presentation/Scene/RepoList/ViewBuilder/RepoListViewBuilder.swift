@@ -9,8 +9,8 @@ import AppCore
 import UIKit
 import UseCase
 
-public enum RepoListViewBuilder {
-    public static func build(environment: AppEnvironment) -> UIViewController {
+enum RepoListViewBuilder {
+    static func build(environment: AppEnvironment) -> UIViewController {
         let wireFrame = RepoListWireframeImpl(environment: environment)
         let presenter: RepoListPresenter & RepoListPresenterInput = RepoListPresenterImpl(
             searchRepoUseCase: SearchRepoUseCaseProvider.provide(environment: environment),

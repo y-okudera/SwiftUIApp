@@ -8,25 +8,25 @@
 import AppCore
 import SwiftUI
 
-public protocol RepoListViewInput: AnyObject {
+protocol RepoListViewInput: AnyObject {
     func repoListViewSearchRepositories(searchQuery: String)
     func repoListViewLoadMoreRepositories()
     func repoListViewDidTapRepository(_ repository: GitHubRepository)
 }
 
-public struct RepoListView: View {
+struct RepoListView: View {
 
     weak var input: RepoListViewInput?
 
     @ObservedObject
     private var dataSource: DataSource
 
-    public init(input: RepoListViewInput?, dataSource: DataSource) {
+    init(input: RepoListViewInput?, dataSource: DataSource) {
         self.input = input
         self.dataSource = dataSource
     }
 
-    public var body: some View {
+    var body: some View {
         SearchNavigation(
             text: $dataSource.inputText,
             search: { input?.repoListViewSearchRepositories(searchQuery: dataSource.inputText) },
@@ -69,7 +69,7 @@ public struct RepoListView: View {
 
 // MARK: - DataSource
 extension RepoListView {
-    public class DataSource: ObservableObject {
+    class DataSource: ObservableObject {
         @Published var inputText = ""
         @Published var isErrorShown = false
         @Published var repositories = [GitHubRepository]()
