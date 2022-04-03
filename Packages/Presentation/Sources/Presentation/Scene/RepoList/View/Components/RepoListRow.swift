@@ -27,7 +27,7 @@ struct RepoListRow: View {
                     Spacer()
                 }
             }
-            .foregroundColor(.text)
+            .foregroundColor(Color(Asset.text.color))
         }
     }
 }
