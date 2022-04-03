@@ -8,5 +8,5 @@
 import Foundation
 
 public struct SearchRepoResponse: Decodable {
-  public let items: [GitHubRepository]
+    public let items: [GitHubRepository]
 }

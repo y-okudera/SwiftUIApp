@@ -11,7 +11,8 @@ import Foundation
 public enum SearchRepoRepositoryProvider {
     public static func provide(environment: AppEnvironment) -> SearchRepoRepository {
         SearchRepoRepositoryImpl(
-            searchRepoRemoteDataSource: SearchRepoRemoteDataSourceProvider.provide(environment: environment)
+            searchRepoRemoteDataSource: SearchRepoRemoteDataSourceProvider.provide(
+                environment: environment)
         )
     }
 }

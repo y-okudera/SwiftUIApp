@@ -13,16 +13,16 @@ let package = Package(
         .library(
             name: "Infrastructure",
             targets: ["Infrastructure"]
-        ),
+        )
     ],
     dependencies: [
-        .package(name: "AppCore", path: "../AppCore"),
+        .package(name: "AppCore", path: "../AppCore")
     ],
     targets: [
         .target(
             name: "Infrastructure",
             dependencies: [
-                .product(name: "AppCore", package: "AppCore"),
+                .product(name: "AppCore", package: "AppCore")
             ]
         ),
         .testTarget(

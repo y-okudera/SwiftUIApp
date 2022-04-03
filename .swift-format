@@ -1,4 +1,6 @@
 {
+  "version" : 1,
+  "tabWidth" : 4,
   "fileScopedDeclarationPrivacy" : {
     "accessLevel" : "private"
   },
@@ -11,7 +13,7 @@
   "lineBreakBeforeControlFlowKeywords" : false,
   "lineBreakBeforeEachArgument" : false,
   "lineBreakBeforeEachGenericRequirement" : false,
-  "lineLength" : 100,
+  "lineLength" : 150,
   "maximumBlankLines" : 1,
   "prioritizeKeepingFunctionOutputTogether" : false,
   "respectsExistingLineBreaks" : true,
@@ -50,7 +52,5 @@
     "UseTripleSlashForDocumentationComments" : true,
     "UseWhereClausesInForLoops" : false,
     "ValidateDocumentationComments" : false
-  },
-  "tabWidth" : 4,
-  "version" : 1
+  }
 }

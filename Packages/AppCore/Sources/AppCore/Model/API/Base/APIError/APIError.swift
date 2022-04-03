@@ -32,15 +32,15 @@ public enum APIError: Error {
         if let urlError = error as? URLError {
             switch urlError.code {
             case .timedOut,
-                    .cannotFindHost,
-                    .cannotConnectToHost,
-                    .networkConnectionLost,
-                    .dnsLookupFailed,
-                    .httpTooManyRedirects,
-                    .resourceUnavailable,
-                    .notConnectedToInternet,
-                    .secureConnectionFailed,
-                    .cannotLoadFromNetwork:
+                .cannotFindHost,
+                .cannotConnectToHost,
+                .networkConnectionLost,
+                .dnsLookupFailed,
+                .httpTooManyRedirects,
+                .resourceUnavailable,
+                .notConnectedToInternet,
+                .secureConnectionFailed,
+                .cannotLoadFromNetwork:
                 self = APIError.cannotConnected
             default:
                 self = APIError.unknown(error)

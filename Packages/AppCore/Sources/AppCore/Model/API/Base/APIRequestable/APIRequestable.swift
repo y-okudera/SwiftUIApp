@@ -56,7 +56,9 @@ extension APIRequestable {
             headerFields.forEach { key, value in
                 request.addValue(value, forHTTPHeaderField: key)
             }
-            if let bodyItems = self.bodyItems, let httpBody = try? JSONSerialization.data(withJSONObject: bodyItems, options: []) {
+            if let bodyItems = self.bodyItems,
+                let httpBody = try? JSONSerialization.data(withJSONObject: bodyItems, options: [])
+            {
                 request.httpBody = httpBody
             }
             return request

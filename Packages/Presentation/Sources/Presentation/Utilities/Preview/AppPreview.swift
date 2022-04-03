@@ -11,7 +11,7 @@ struct AppPreview<Content>: View where Content: View {
     let content: () -> Content
 
     private let previewDevices = [
-        "iPhone 13",
+        "iPhone 13"
     ]
 
     var body: some View {

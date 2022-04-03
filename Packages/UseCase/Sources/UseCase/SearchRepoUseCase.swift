@@ -25,6 +25,7 @@ struct SearchRepoUseCaseImpl: SearchRepoUseCase {
     let environment: AppEnvironment
 
     func execute(searchQuery: String, page: Int) async throws -> APIResponse<SearchRepoResponse> {
-        return try await environment.searchRepoRepository.execute(searchQuery: searchQuery, page: page)
+        return try await environment.searchRepoRepository.execute(
+            searchQuery: searchQuery, page: page)
     }
 }

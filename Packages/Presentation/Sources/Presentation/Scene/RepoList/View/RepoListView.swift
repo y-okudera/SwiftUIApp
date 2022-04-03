@@ -30,37 +30,37 @@ public struct RepoListView: View {
         SearchNavigation(
             text: $dataSource.inputText,
             search: { input?.repoListViewSearchRepositories(searchQuery: dataSource.inputText) }
-        ) {
-            List {
-                ForEach(dataSource.repositories) { repository in
-                    RepoListRow(title: repository.fullName, language: repository.language ?? "") {
-                        print(repository.fullName, repository.language ?? "")
-                        input?.repoListViewDidTapRepository(repository)
-                    }
-                }
-                HStack {
-                    Spacer()
-                    ProgressView()
-                        .onAppear {
-                            input?.repoListViewLoadMoreRepositories()
+            content: {
+                List {
+                    ForEach(dataSource.repositories) { repository in
+                        RepoListRow(title: repository.fullName, language: repository.language ?? "") {
+                            print(repository.fullName, repository.language ?? "")
+                            input?.repoListViewDidTapRepository(repository)
                         }
-                    Spacer()
+                    }
+                    HStack {
+                        Spacer()
+                        ProgressView()
+                            .onAppear {
+                                input?.repoListViewLoadMoreRepositories()
+                            }
+                        Spacer()
+                    }
+                    // 次のページがない場合、リスト末尾にインジケーターを表示しない
+                    .hidden(!dataSource.hasNext)
                 }
-                // 次のページがない場合、リスト末尾にインジケーターを表示しない
-                .hidden(!dataSource.hasNext)
-            }
-            .alert(isPresented: $dataSource.isErrorShown) { () -> Alert in
-                Alert(
-                    title: Text(dataSource.errorTitle),
-                    message: Text(dataSource.errorMessage),
-                    primaryButton: .default(
-                        Text("retry", bundle: .module), action: dataSource.retryHandler),
-                    secondaryButton: .cancel(Text("cancel", bundle: .module))
-                )
-            }
-            .navigationBarTitle(Text("repo_list_view.navigation_bar_title", bundle: .module))
-        }
-        .edgesIgnoringSafeArea([.top, .bottom])
+                .alert(isPresented: $dataSource.isErrorShown) { () -> Alert in
+                    Alert(
+                        title: Text(dataSource.errorTitle),
+                        message: Text(dataSource.errorMessage),
+                        primaryButton: .default(
+                            Text("retry", bundle: .module), action: dataSource.retryHandler),
+                        secondaryButton: .cancel(Text("cancel", bundle: .module))
+                    )
+                }
+                .navigationBarTitle(Text("repo_list_view.navigation_bar_title", bundle: .module))
+            })
+            .edgesIgnoringSafeArea([.top, .bottom])
     }
 }
 
@@ -104,11 +104,11 @@ extension RepoListView.DataSource {
 }
 
 #if DEBUG
-    struct RepoListView_Previews: PreviewProvider {
-        static var previews: some View {
-            AppPreview {
-                RepoListView(input: nil, dataSource: .mock)
-            }
+struct RepoListView_Previews: PreviewProvider {
+    static var previews: some View {
+        AppPreview {
+            RepoListView(input: nil, dataSource: .mock)
         }
     }
+}
 #endif

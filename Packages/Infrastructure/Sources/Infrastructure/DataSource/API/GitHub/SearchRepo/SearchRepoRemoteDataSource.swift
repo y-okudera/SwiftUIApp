@@ -23,6 +23,7 @@ struct SearchRepoRemoteDataSourceImpl: SearchRepoRemoteDataSource {
     let environment: AppEnvironment
 
     func execute(searchQuery: String, page: Int) async throws -> APIResponse<SearchRepoResponse> {
-        return try await environment.apiClient.sendRequest(SearchRepoRequest(searchQuery: searchQuery, page: page))
+        return try await environment.apiClient.sendRequest(
+            SearchRepoRequest(searchQuery: searchQuery, page: page))
     }
 }

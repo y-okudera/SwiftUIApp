@@ -12,16 +12,16 @@ let package = Package(
     products: [
         .library(
             name: "UseCase",
-            targets: ["UseCase"]),
+            targets: ["UseCase"])
     ],
     dependencies: [
-        .package(name: "AppCore", path: "../AppCore"),
+        .package(name: "AppCore", path: "../AppCore")
     ],
     targets: [
         .target(
             name: "UseCase",
             dependencies: [
-                .product(name: "AppCore", package: "AppCore"),
+                .product(name: "AppCore", package: "AppCore")
             ]
         ),
         .testTarget(

@@ -13,7 +13,7 @@ let package = Package(
         .library(
             name: "AppCore",
             targets: ["AppCore"]
-        ),
+        )
     ],
     dependencies: [
 

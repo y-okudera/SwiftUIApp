@@ -1,4 +1,5 @@
 import XCTest
+
 @testable import UseCase
 
 final class UseCaseTests: XCTestCase {

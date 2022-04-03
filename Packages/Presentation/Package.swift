@@ -14,7 +14,7 @@ let package = Package(
         .library(
             name: "Presentation",
             targets: ["Presentation"]
-        ),
+        )
     ],
     dependencies: [
         .package(name: "AppCore", path: "../AppCore"),
