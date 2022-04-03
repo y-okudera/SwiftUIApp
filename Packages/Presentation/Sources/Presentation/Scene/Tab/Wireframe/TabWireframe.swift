@@ -1,5 +1,5 @@
 //
-//  SplashWireframe.swift
+//  TabWireframe.swift
 //  Presentation
 //
 //  Created by yuoku on 2022/04/03.
@@ -9,13 +9,12 @@
 import AppCore
 import UIKit
 
-protocol SplashWireframe: AnyObject {
+protocol TabWireframe: AnyObject {
     var environment: AppEnvironment { get }
     func configure(viewController: UIViewController?)
-    func presentTab()
 }
 
-final class SplashWireframeImpl: SplashWireframe {
+final class TabWireframeImpl: TabWireframe {
 
     private weak var viewController: UIViewController?
     let environment: AppEnvironment
@@ -26,11 +25,5 @@ final class SplashWireframeImpl: SplashWireframe {
 
     func configure(viewController: UIViewController?) {
         self.viewController = viewController
-    }
-
-    func presentTab() {
-        let vc = TabViewBuilder.build(environment: environment)
-        vc.modalPresentationStyle = .fullScreen
-        viewController?.present(vc, animated: true)
     }
 }

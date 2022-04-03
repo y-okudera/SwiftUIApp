@@ -44,7 +44,7 @@ extension SplashPresenterImpl: SplashPresenterInput {
 
     func viewWillAppear() {
         DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) { [weak self] in
-            self?.wireframe.presentRepoList()
+            self?.wireframe.presentTab()
         }
     }
 }
