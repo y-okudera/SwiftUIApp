@@ -9,11 +9,13 @@ import AppCore
 import Foundation
 import UseCase
 
-// MARK: - PresenterInput
 protocol RepoListPresenter: AnyObject {
     var searchRepoUseCase: SearchRepoUseCase { get }
     func configure(output: RepoListPresenterOutput?)
+}
 
+// MARK: - PresenterInput
+protocol RepoListPresenterInput: AnyObject {
     func searchRepositories(searchQuery: String) async
     func loadMoreRepositories() async
     func didTapRepository(_ repository: GitHubRepository)
@@ -42,6 +44,9 @@ public final class RepoListPresenterImpl: RepoListPresenter {
     func configure(output: RepoListPresenterOutput?) {
         self.output = output
     }
+}
+
+extension RepoListPresenterImpl: RepoListPresenterInput {
 
     @MainActor
     func searchRepositories(searchQuery: String) async {

@@ -13,7 +13,7 @@ public enum RepoListViewBuilder {
     public static func build(environment: AppEnvironment) -> UIViewController {
         let dataSource = RepoListView.DataSource()
 
-        let presenter: RepoListPresenter = RepoListPresenterImpl(
+        let presenter: RepoListPresenter & RepoListPresenterInput = RepoListPresenterImpl(
             searchRepoUseCase: SearchRepoUseCaseProvider.provide(environment: environment)
         )
 

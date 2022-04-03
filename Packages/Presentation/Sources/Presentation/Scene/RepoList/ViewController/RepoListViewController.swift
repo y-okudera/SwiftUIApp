@@ -10,13 +10,13 @@ import UIKit
 import SwiftUI
 
 protocol RepoListViewControllerProtocol: UIViewController, RepoListPresenterOutput {
-    func configure(dataSource: RepoListView.DataSource, presenter: RepoListPresenter)
+    func configure(dataSource: RepoListView.DataSource, presenter: RepoListPresenterInput)
 }
 
 final class RepoListViewController: UIViewController {
 
     private var dataSource: RepoListView.DataSource!
-    private var presenter: RepoListPresenter!
+    private var presenter: RepoListPresenterInput!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,7 +28,7 @@ final class RepoListViewController: UIViewController {
 
 extension RepoListViewController: RepoListViewControllerProtocol {
 
-    func configure(dataSource: RepoListView.DataSource, presenter: RepoListPresenter) {
+    func configure(dataSource: RepoListView.DataSource, presenter: RepoListPresenterInput) {
         self.dataSource = dataSource
         self.presenter = presenter
     }
