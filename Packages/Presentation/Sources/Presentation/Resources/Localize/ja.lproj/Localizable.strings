@@ -10,7 +10,10 @@
 
 "cancel" = "キャンセル";
 "retry" = "リトライ";
+"error_occurred" = "エラーが発生しました。";
 
 // MARK: - RepoListView.swift
 
 "repo_list_view.navigation_bar_title" = "リポジトリ";
+"repo_list_view.empty_search_results.title" = "検索結果";
+"repo_list_view.empty_search_results.message" = "該当するリポジトリがありません。";

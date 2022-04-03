@@ -10,7 +10,10 @@
 
 "cancel" = "Cancel";
 "retry" = "Retry";
+"error_occurred" = "An error has occurred.";
 
 // MARK: - RepoListView.swift
 
 "repo_list_view.navigation_bar_title" = "Repositories";
+"repo_list_view.empty_search_results.title" = "Search results";
+"repo_list_view.empty_search_results.message" = "There are no repository search results.";

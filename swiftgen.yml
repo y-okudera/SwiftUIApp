@@ -1,0 +1,16 @@
+input_dir: ./Packages/Presentation/Sources/Presentation/Resources
+output_dir: ./Packages/Presentation/Sources/Presentation/Resources
+
+strings:
+  inputs:
+    - Localize/en.lproj/Localizable.strings
+  outputs:
+    - templateName: structured-swift5
+      output: Localize/Generated/L10n-Constants.swift
+
+xcassets:
+  inputs:
+    - Assets/Assets.xcassets
+  outputs:
+    - templateName: swift5
+      output: Assets/Generated/Assets.swift

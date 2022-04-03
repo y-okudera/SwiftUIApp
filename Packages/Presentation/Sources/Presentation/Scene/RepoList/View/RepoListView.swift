@@ -29,7 +29,7 @@ public struct RepoListView: View {
     public var body: some View {
         SearchNavigation(
             text: $dataSource.inputText,
-            search: { input?.repoListViewSearchRepositories(searchQuery: dataSource.inputText) }
+            search: { input?.repoListViewSearchRepositories(searchQuery: dataSource.inputText) },
             content: {
                 List {
                     ForEach(dataSource.repositories) { repository in
@@ -54,13 +54,16 @@ public struct RepoListView: View {
                         title: Text(dataSource.errorTitle),
                         message: Text(dataSource.errorMessage),
                         primaryButton: .default(
-                            Text("retry", bundle: .module), action: dataSource.retryHandler),
-                        secondaryButton: .cancel(Text("cancel", bundle: .module))
+                            Text(L10n.retry), action: dataSource.retryHandler),
+                        secondaryButton: .cancel(Text(L10n.cancel))
                     )
                 }
-                .navigationBarTitle(Text("repo_list_view.navigation_bar_title", bundle: .module))
-            })
-            .edgesIgnoringSafeArea([.top, .bottom])
+                .navigationBarTitle(
+                    Text(L10n.RepoListView.navigationBarTitle)
+                )
+            }
+        )
+        .edgesIgnoringSafeArea([.top, .bottom])
     }
 }
 
@@ -104,11 +107,11 @@ extension RepoListView.DataSource {
 }
 
 #if DEBUG
-struct RepoListView_Previews: PreviewProvider {
-    static var previews: some View {
-        AppPreview {
-            RepoListView(input: nil, dataSource: .mock)
+    struct RepoListView_Previews: PreviewProvider {
+        static var previews: some View {
+            AppPreview {
+                RepoListView(input: nil, dataSource: .mock)
+            }
         }
     }
-}
 #endif

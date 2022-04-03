@@ -69,22 +69,16 @@ extension RepoListPresenterImpl: RepoListPresenterInput {
                     return
                 }
                 output?.errorOccurred(
-                    errorTitle: "検索結果",
-                    errorMessage: "該当するリポジトリがありません。",
+                    errorTitle: L10n.RepoListView.EmptySearchResults.title,
+                    errorMessage: L10n.RepoListView.EmptySearchResults.message,
                     retryHandler: nil
                 )
             } catch {
                 print("searchRepositories error", error)
-
-                let nsError = error as NSError
-                output?.errorOccurred(
-                    errorTitle: nsError.localizedDescription,
-                    errorMessage: nsError.localizedRecoverySuggestion ?? "エラーが発生しました。",
-                    retryHandler: { [weak self] in
-                        guard let self = self else { return }
-                        Task { await self.searchRepositories(searchQuery: searchQuery) }
-                    }
-                )
+                errorOccurred(error: error) { [weak self] in
+                    guard let self = self else { return }
+                    Task { await self.searchRepositories(searchQuery: searchQuery) }
+                }
             }
         }
     }
@@ -103,16 +97,10 @@ extension RepoListPresenterImpl: RepoListPresenterInput {
             } catch {
                 print("searchRepositories error", error)
                 page -= 1
-
-                let nsError = error as NSError
-                output?.errorOccurred(
-                    errorTitle: nsError.localizedDescription,
-                    errorMessage: nsError.localizedRecoverySuggestion ?? "エラーが発生しました。",
-                    retryHandler: { [weak self] in
-                        guard let self = self else { return }
-                        Task { await self.loadMoreRepositories() }
-                    }
-                )
+                errorOccurred(error: error) { [weak self] in
+                    guard let self = self else { return }
+                    Task { await self.loadMoreRepositories() }
+                }
             }
         }
     }
@@ -121,5 +109,17 @@ extension RepoListPresenterImpl: RepoListPresenterInput {
         // TODO: - Will impl
         print(#function, "repository", repository)
         wireframe.presentRepoList()
+    }
+}
+
+extension RepoListPresenterImpl {
+
+    private func errorOccurred(error: Error, retryHandler: (() -> Void)?) {
+        let nsError = error as NSError
+        output?.errorOccurred(
+            errorTitle: nsError.localizedDescription,
+            errorMessage: nsError.localizedRecoverySuggestion ?? L10n.errorOccurred,
+            retryHandler: retryHandler
+        )
     }
 }
