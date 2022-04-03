@@ -33,7 +33,7 @@ protocol {{ sceneName }}PresenterOutput: AnyObject {
 // MARK: - Impl
 final class {{ sceneName }}PresenterImpl: {{ sceneName }}Presenter {
 
-    weak var output: {{ sceneName }}PresenterOutput?
+    private weak var output: {{ sceneName }}PresenterOutput?
     // private var searchQuery = ""
     // private var page = 0
 
