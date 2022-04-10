@@ -1,0 +1,13 @@
+//
+//  {{ upperAPIName }}Response.swift
+//  AppCore
+//
+//  Created by {{ developerName }} on {{ date }}.
+//  Copyright © {{ year }} {{ developerCompany }}. All rights reserved.
+//
+
+import Foundation
+
+public struct {{ upperAPIName }}Response: Decodable {
+    public let items: [GitHubRepository]
+}

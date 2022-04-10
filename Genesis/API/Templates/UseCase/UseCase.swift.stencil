@@ -1,0 +1,32 @@
+//
+//  {{ upperAPIName }}UseCase.swift
+//  UseCase
+//
+//  Created by {{ developerName }} on {{ date }}.
+//  Copyright © {{ year }} {{ developerCompany }}. All rights reserved.
+//
+
+import AppCore
+import Foundation
+
+public enum {{ upperAPIName }}UseCaseProvider {
+    public static func provide(environment: AppEnvironment) -> {{ upperAPIName }}UseCase {
+        {{ upperAPIName }}UseCaseImpl(
+            environment: environment
+        )
+    }
+}
+
+public protocol {{ upperAPIName }}UseCase {
+    func execute(searchQuery: String, page: Int) async throws -> APIResponse<{{ upperAPIName }}Response>
+}
+
+struct {{ upperAPIName }}UseCaseImpl: {{ upperAPIName }}UseCase {
+
+    let environment: AppEnvironment
+
+    func execute(searchQuery: String, page: Int) async throws -> APIResponse<{{ upperAPIName }}Response> {
+        return try await environment.{{ lowerAPIName }}Repository.execute(
+            searchQuery: searchQuery, page: page)
+    }
+}

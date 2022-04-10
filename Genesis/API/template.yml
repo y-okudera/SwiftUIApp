@@ -1,0 +1,11 @@
+files:
+  - template: Templates/DataSource/RemoteDataSource.swift.stencil
+    path: "DataSource/{{ upperAPIName }}RemoteDataSource.swift"
+  - template: Templates/Repository/Repository.swift.stencil
+    path: "Repository/{{ upperAPIName }}Repository.swift"
+  - template: Templates/UseCase/UseCase.swift.stencil
+    path: "UseCase/{{ upperAPIName }}UseCase.swift"
+  - template: Templates/Request/Request.swift.stencil
+    path: "Request/{{ upperAPIName }}Request.swift"
+  - template: Templates/Response/Response.swift.stencil
+    path: "Response/{{ upperAPIName }}Response.swift"

@@ -53,6 +53,11 @@ gen-scene: ## Generate Swift code for scene
 	chmod +x Scripts/genesis-scene.sh
 	Scripts/genesis-scene.sh
 
+.PHONY: gen-api
+gen-api: ## Generate Swift code for api
+	chmod +x Scripts/genesis-api.sh
+	Scripts/genesis-api.sh
+
 .PHONY: build-cli-tools
 build-cli-tools: ## Build CLI tools managed by SwiftPM
 	swift build -c release --package-path ./Tools/Common --product license-plist

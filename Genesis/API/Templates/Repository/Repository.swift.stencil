@@ -1,0 +1,32 @@
+//
+//  {{ upperAPIName }}Repository.swift
+//  Infrastructure
+//
+//  Created by {{ developerName }} on {{ date }}.
+//  Copyright © {{ year }} {{ developerCompany }}. All rights reserved.
+//
+
+import AppCore
+import Foundation
+
+public enum {{ upperAPIName }}RepositoryProvider {
+    public static func provide(environment: AppEnvironment) -> {{ upperAPIName }}Repository {
+        {{ upperAPIName }}RepositoryImpl(
+            remoteDataSource: {{ upperAPIName }}RemoteDataSourceProvider.provide(
+                environment: environment)
+        )
+    }
+}
+
+public protocol {{ upperAPIName }}Repository {
+    func execute(searchQuery: String, page: Int) async throws -> APIResponse<{{ upperAPIName }}Response>
+}
+
+struct {{ upperAPIName }}RepositoryImpl: {{ upperAPIName }}Repository {
+
+    let remoteDataSource: {{ upperAPIName }}RemoteDataSource
+
+    func execute(searchQuery: String, page: Int) async throws -> APIResponse<{{ upperAPIName }}Response> {
+        return try await remoteDataSource.execute(searchQuery: searchQuery, page: page)
+    }
+}

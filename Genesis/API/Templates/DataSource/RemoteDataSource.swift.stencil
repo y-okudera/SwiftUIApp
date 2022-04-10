@@ -1,0 +1,30 @@
+//
+//  {{ upperAPIName }}RemoteDataSource.swift
+//  Infrastructure
+//
+//  Created by {{ developerName }} on {{ date }}.
+//  Copyright © {{ year }} {{ developerCompany }}. All rights reserved.
+//
+
+import AppCore
+import Foundation
+
+enum {{ upperAPIName }}RemoteDataSourceProvider {
+    static func provide(environment: AppEnvironment) -> {{ upperAPIName }}RemoteDataSource {
+        {{ upperAPIName }}RemoteDataSourceImpl(environment: environment)
+    }
+}
+
+protocol {{ upperAPIName }}RemoteDataSource {
+    func execute(searchQuery: String, page: Int) async throws -> APIResponse<{{ upperAPIName }}Response>
+}
+
+struct {{ upperAPIName }}RemoteDataSourceImpl: {{ upperAPIName }}RemoteDataSource {
+
+    let environment: AppEnvironment
+
+    func execute(searchQuery: String, page: Int) async throws -> APIResponse<{{ upperAPIName }}Response> {
+        return try await environment.apiClient.sendRequest(
+            {{ upperAPIName }}Request(searchQuery: searchQuery, page: page))
+    }
+}
