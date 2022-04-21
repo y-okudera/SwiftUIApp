@@ -9,6 +9,7 @@ import Foundation
 
 public struct GitHubRepository: Decodable, Identifiable {
     public let id: Int64
+    public let name: String
     public let fullName: String
     public let description: String?
     public let stargazersCount: Int
@@ -18,6 +19,7 @@ public struct GitHubRepository: Decodable, Identifiable {
 
     public init(
         id: Int64,
+        name: String,
         fullName: String,
         description: String?,
         stargazersCount: Int,
@@ -26,6 +28,7 @@ public struct GitHubRepository: Decodable, Identifiable {
         owner: GitHubUser
     ) {
         self.id = id
+        self.name = name
         self.fullName = fullName
         self.description = description
         self.stargazersCount = stargazersCount

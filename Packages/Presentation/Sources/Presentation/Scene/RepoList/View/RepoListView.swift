@@ -88,6 +88,7 @@ extension RepoListView.DataSource {
         mock.repositories = [
             .init(
                 id: 1,
+                name: "y-okudera",
                 fullName: "y-okudera/SwiftUIApp",
                 description: "Swift Package based App.",
                 stargazersCount: 1234,

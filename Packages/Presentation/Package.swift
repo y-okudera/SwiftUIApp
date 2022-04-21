@@ -19,6 +19,7 @@ let package = Package(
     dependencies: [
         .package(name: "AppCore", path: "../AppCore"),
         .package(name: "UseCase", path: "../UseCase"),
+        .package(url: "https://github.com/onevcat/Kingfisher", from: "6.3.1"),
     ],
     targets: [
         .target(
@@ -26,6 +27,7 @@ let package = Package(
             dependencies: [
                 .product(name: "AppCore", package: "AppCore"),
                 .product(name: "UseCase", package: "UseCase"),
+                .product(name: "Kingfisher", package: "Kingfisher"),
             ]
         ),
         .testTarget(
